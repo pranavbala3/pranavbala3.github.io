@@ -4,8 +4,9 @@ import {
     theme,
   } from "@chakra-ui/react"
 import { motion } from "framer-motion";
-import '../App.css';
-import { Helmet } from "react-helmet";
+
+
+// import '../App.css';
 
 const Home: React.FC = () => {
   return (
