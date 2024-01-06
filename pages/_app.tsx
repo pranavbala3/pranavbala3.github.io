@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }) {
               outerSize={15}
               trailingSpeed={3}
               color='51, 153, 255'
+              outerScale={2.1}
         />
 				<Component {...pageProps} />
 			</GlobalStyle>

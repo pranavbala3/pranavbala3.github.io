@@ -51,7 +51,7 @@ export default function Navbar() {
         px={4}
         position="fixed" // Set the position to fixed
         width="100%" // Make it full-width
-        zIndex="1000" // Set a higher z-index to make sure it's on top
+        zIndex="99" // Set a higher z-index to make sure it's on top
         top="0" // Stick it to the top
       >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>

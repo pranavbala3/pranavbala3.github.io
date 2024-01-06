@@ -53,13 +53,7 @@ const fonts = {
 	heading: `Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
 };
 
-const breakpoints = createBreakpoints({
-	base: "0em",
-	sm: "30em",
-	md: "48em",
-	lg: "80em",
-	xl: "80em",
-});
+
 
 const Link = {
 	baseStyle: {
@@ -91,7 +85,6 @@ const overrides = {
 	fonts,
 	shadows,
 	borders,
-	breakpoints,
 	fontWeights: {
 		normal: 300,
 		medium: 600,
@@ -110,7 +103,7 @@ const overrides = {
 		  '6xl': fluidType(24, 48),
 		  '7xl': fluidType(32, 64),
 		  '8xl': fluidType(36, 72),
-		display: fluidType(80, 144),
+		display: fluidType(80, 100),
 		display2: fluidType(26, 36),
 		display3: fluidType(19, 24),
 	},

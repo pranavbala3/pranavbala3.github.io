@@ -1,26 +1,27 @@
 import { useEffect, useRef, useState } from "react";
-import { Stack, Heading, Text, Flex, VStack,} from "@chakra-ui/react";
+import { Button, Icon, Stack, Heading, Flex, } from "@chakra-ui/react";
 import { ArrowDownIcon } from '@chakra-ui/icons'
 import { NextPage } from "next";
 import {motion} from "framer-motion";
+import Reveal from "../styles/Reveal";
 import Layout from "../components/Layout";
 import Typewriter from 'typewriter-effect/dist/core';
 import About from "../components/about";
+import Education from "../components/education";
+import { FaGraduationCap } from "react-icons/fa";
 
 const Home: NextPage = () => {
   const titleRef = useRef(null);
-  const [showText, setShowText] = useState(false);
   const theRef = useRef(null);
   const [isBouncing, setIsBouncing] = useState(true);
 
   const scrollDown = () => {
-    theRef.current.scrollIntoView(); 
+    theRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
  }
 
   const handleButtonClick = () => {
     if(isBouncing) {
        setIsBouncing(false);
-       // console.log("button clicked")
     }
 
     scrollDown(); 
@@ -49,6 +50,7 @@ const Home: NextPage = () => {
 
   return (
     <Layout>
+      <motion.div>
       <Stack spacing={10} justifyContent="flex-start" alignItems="center" width="100%">
         <Flex height="60vh" alignItems="center" justifyContent="center">
           <Flex direction="column" background ="gray.100" p={12} rounded={6}>
@@ -58,8 +60,8 @@ const Home: NextPage = () => {
           </Flex>
         </Flex>
       </Stack>
-      <Heading textAlign='right' marginRight={50} as='h1' fontSize='display' color="white"> Welcome To My Portfolio! </Heading>
-      <Flex alignItems="center" justifyContent="center" p={10}>
+      <Heading textAlign='center' as='h1' fontSize='display' color="white"> Welcome To My Portfolio! </Heading>
+      <Flex alignItems="center" justifyContent="center" p={5}>
         <motion.div 
                     initial={{y: 0}}
                     animate={{
@@ -68,10 +70,27 @@ const Home: NextPage = () => {
                     transition= {isBouncing ? bounceTransition : {} }
                     style={{marginTop: '7vh', marginLeft: '-5px'}}
                 >
-        <ArrowDownIcon textAlign='center' boxSize={10} color='white' />
+        <ArrowDownIcon id='arrow' textAlign='center' boxSize={10} color='white' onClick={handleButtonClick}/>
         </motion.div>
       </Flex>
-      <About />
+      </motion.div>
+      <Flex pt={20} pb={10}>
+        <motion.div ref={theRef}>
+          <Reveal index={2}>
+            <About />
+          </Reveal>
+        </motion.div>
+      </Flex>
+      <Flex justifyContent="center" alignItems="center">
+        <Button
+          leftIcon={<Icon as={FaGraduationCap} />}
+          colorScheme="brand"
+          variant="outline"
+        >
+          Learn more about my journey
+        </Button>
+      </Flex>
+      <Education />
     </Layout>
   );
 };
