@@ -7,24 +7,37 @@ import Reveal from "../styles/Reveal";
 import Layout from "../components/Layout";
 import Typewriter from 'typewriter-effect/dist/core';
 import About from "../components/about";
-import Education from "../components/education";
+import Experience from "../components/experience";
 import { FaGraduationCap } from "react-icons/fa";
 
 const Home: NextPage = () => {
   const titleRef = useRef(null);
-  const theRef = useRef(null);
+  const AboutRef = useRef(null);
+  const EducationRef = useRef(null);
   const [isBouncing, setIsBouncing] = useState(true);
 
-  const scrollDown = () => {
-    theRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+  const scrollDownToAbout = () => {
+    AboutRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
  }
 
-  const handleButtonClick = () => {
+ const scrollDownToEducation = () => {
+  EducationRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+}
+
+  const handleButtonClick1 = () => {
     if(isBouncing) {
        setIsBouncing(false);
     }
 
-    scrollDown(); 
+    scrollDownToAbout(); 
+  };
+
+  const handleButtonClick2 = () => {
+    if(isBouncing) {
+      setIsBouncing(false);
+   }
+   
+    scrollDownToEducation(); 
   };
 
   const bounceTransition = {
@@ -38,7 +51,7 @@ const Home: NextPage = () => {
 
     const titleElement = titleRef.current;
     const typewriter = new Typewriter(titleElement, {
-      strings: ["Developer", "Innovator", "Problem Solver"],
+      strings: ["Developer.", "Innovator.", "Problem Solver.",],
       autoStart: true,
       loop: true,
     });
@@ -55,7 +68,7 @@ const Home: NextPage = () => {
         <Flex height="60vh" alignItems="center" justifyContent="center">
           <Flex direction="column" background ="gray.100" p={12} rounded={6}>
               <Heading mt={0} fontSize="8xl" lineHeight="95%" letterSpacing={{ sm: "-1.2px", md: "-1.8px" }} position="relative" zIndex={1} >
-              Hi, I'm Pranav Balabhadra <br /> <span ref={titleRef} />
+              Hi, I'm Pranav Balabhadra. <br /> <span ref={titleRef} />
               </Heading>
           </Flex>
         </Flex>
@@ -70,18 +83,18 @@ const Home: NextPage = () => {
                     transition= {isBouncing ? bounceTransition : {} }
                     style={{marginTop: '7vh', marginLeft: '-5px'}}
                 >
-        <ArrowDownIcon id='arrow' textAlign='center' boxSize={10} color='white' onClick={handleButtonClick}/>
+        <ArrowDownIcon id='arrow' textAlign='center' boxSize={10} color='white' onClick={handleButtonClick1}/>
         </motion.div>
       </Flex>
       </motion.div>
       <Flex pt={20} pb={10}>
-        <motion.div ref={theRef}>
+        <motion.div ref={AboutRef}>
           <Reveal index={2}>
             <About />
           </Reveal>
         </motion.div>
       </Flex>
-      <Flex justifyContent="center" alignItems="center">
+      <Flex justifyContent="center" alignItems="center" pb={25} onClick={handleButtonClick2}>
         <Button
           leftIcon={<Icon as={FaGraduationCap} />}
           colorScheme="brand"
@@ -90,7 +103,13 @@ const Home: NextPage = () => {
           Learn more about my journey
         </Button>
       </Flex>
-      <Education />
+      <Flex pt={20} pb={10}>
+        <motion.div ref={EducationRef}>
+          <Reveal index={2}>
+            <Experience />
+          </Reveal>
+        </motion.div>
+      </Flex>
     </Layout>
   );
 };

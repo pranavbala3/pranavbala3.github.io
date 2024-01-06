@@ -14,7 +14,7 @@ import React from "react";
 
 const About = () => (
   <>
-    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8} padding={100}>
+    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8} p={100} >
     <Stack spacing={4}>
         <Heading color="white" fontSize="6xl">
           About Me
@@ -27,7 +27,7 @@ const About = () => (
           padding="30px"
         >
           <Text fontSize={{ base: "14px", md: "18px" }} whiteSpace="pre-line">
-          Hello! 👋 I'm Pranav Balabhadra, and I'm a a junior at Case Western Reserve University 
+          Hello! 👋 I'm Pranav Balabhadra, and I'm a junior at Case Western Reserve University 
           pursuing degrees in Computer Science and Biomedical Engineering.  
           I'm particularly interested in the fields of Artificial Intelligence and Machine Learning. 
           I'm actively seeking opportunities in AI, ML, and Software Engineering, eager to contribute to cutting-edge developments. 
@@ -74,6 +74,21 @@ const About = () => (
         </Flex>
       </Stack>
     </SimpleGrid>
+    <Heading pl={100} pt={5} pb={5} fontSize='3xl' color='white'>My Interests:</Heading>
+    <HStack pl={100} pr={100} spacing={3} justifyContent="flex-start" alignItems="center" width="100%">
+      <Box bg='tomato' w='100%' p={4} color='white' borderRadius="md">
+        <Heading fontSize='1xl' textAlign="center"> Artificial Intelligence</Heading>
+      </Box>
+      <Box bg='orange' w='100%' p={4} color='white' borderRadius="md">
+        <Heading fontSize='1xl' textAlign="center">Machine Learning</Heading>
+      </Box>
+      <Box bg='green' w='100%' p={4} color='white' borderRadius="md">
+        <Heading fontSize='1xl' textAlign="center">Computer Vision</Heading>
+      </Box>
+      <Box bg='blue' w='100%' p={4} color='white' borderRadius="md" >
+        <Heading fontSize='1xl' textAlign="center">Image Processing</Heading>
+      </Box>
+    </HStack>
   </>
 );
 
