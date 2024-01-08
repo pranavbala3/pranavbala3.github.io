@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
         <AnimatedCursor 
               innerSize={15}
               outerSize={15}
-              trailingSpeed={3}
+              trailingSpeed={3.5}
               color='51, 153, 255'
               outerScale={2.1}
         />

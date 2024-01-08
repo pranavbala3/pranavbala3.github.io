@@ -51,7 +51,7 @@ const Home: NextPage = () => {
 
     const titleElement = titleRef.current;
     const typewriter = new Typewriter(titleElement, {
-      strings: ["Developer.", "Innovator.", "Problem Solver.",],
+      strings: ["a developer.", "an innovator.", "a problem solver.",],
       autoStart: true,
       loop: true,
     });
@@ -68,7 +68,7 @@ const Home: NextPage = () => {
         <Flex height="60vh" alignItems="center" justifyContent="center">
           <Flex direction="column" background ="gray.100" p={12} rounded={6}>
               <Heading mt={0} fontSize="8xl" lineHeight="95%" letterSpacing={{ sm: "-1.2px", md: "-1.8px" }} position="relative" zIndex={1} >
-              Hi, I'm Pranav Balabhadra. <br /> <span ref={titleRef} />
+              Hey 👋 I'm Pranav Balabhadra, <br /> <span ref={titleRef} />
               </Heading>
           </Flex>
         </Flex>
