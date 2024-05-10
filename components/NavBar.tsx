@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import {
   Box,
   Flex,
@@ -6,7 +6,6 @@ import {
   HStack,
   IconButton,
   useDisclosure,
-  useColorModeValue,
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
@@ -17,18 +16,6 @@ const Links = [
     name: "Home",
     path: "/",
   },
-  {
-    name: "About",
-    path: "/about",
-  },
-  {
-    name:"Experience",
-    path: "/experience"
-  },
-  {
-    name: "Projects",
-    path: "/projects",
-  },
 ];
 
 const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
@@ -38,7 +25,8 @@ const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
     rounded={"md"}
     _hover={{
       textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
+      bg: "black",
+      color: "white",
     }}
   >
     <Link href={path}>{children}</Link>
@@ -47,16 +35,30 @@ const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isTransparent, setIsTransparent] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 0;
+      setIsTransparent(!isScrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
       <Box
-        bg={useColorModeValue("gray.100", "gray.900")}
+        bg={isTransparent ? "transparent" : "white"}
+        color={isTransparent ? "white" : "black"}
         px={4}
-        position="fixed" // Set the position to fixed
-        width="100%" // Make it full-width
-        zIndex="99" // Set a higher z-index to make sure it's on top
-        top="0" // Stick it to the top
+        position="fixed"
+        width="100%"
+        zIndex="99"
+        top="0"
+        transition="background-color 0.3s"
       >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
@@ -90,10 +92,7 @@ export default function Navbar() {
           </Box>
         ) : null}
       </Box>
-      {/* Add some padding to the content to prevent it from being hidden under the fixed navbar */}
-      <Box paddingTop="20px">
-        {/* The rest of your page content */}
-      </Box>
+      <Box paddingTop="20px" />
     </>
   );
 };

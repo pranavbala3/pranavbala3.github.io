@@ -8,20 +8,21 @@ import Layout from "../components/Layout";
 import Typewriter from 'typewriter-effect/dist/core';
 import About from "../components/about";
 import Experience from "../components/experience";
+import Projects from "../components/projects";
 import { FaGraduationCap } from "react-icons/fa";
 
 const Home: NextPage = () => {
   const titleRef = useRef(null);
   const AboutRef = useRef(null);
-  const EducationRef = useRef(null);
+  const ExperienceRef = useRef(null);
   const [isBouncing, setIsBouncing] = useState(true);
 
   const scrollDownToAbout = () => {
     AboutRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
  }
 
- const scrollDownToEducation = () => {
-  EducationRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+ const scrollDownToExperience = () => {
+  ExperienceRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
 }
 
   const handleButtonClick1 = () => {
@@ -37,7 +38,7 @@ const Home: NextPage = () => {
       setIsBouncing(false);
    }
    
-    scrollDownToEducation(); 
+    scrollDownToExperience(); 
   };
 
   const bounceTransition = {
@@ -103,12 +104,17 @@ const Home: NextPage = () => {
           Learn more about my journey
         </Button>
       </Flex>
-      <Flex pt={20} pb={10}>
-        <motion.div ref={EducationRef}>
+      <Flex pt={20}>
+        <motion.div ref={ExperienceRef}>
           <Reveal index={2}>
             <Experience />
           </Reveal>
         </motion.div>
+      </Flex>
+      <Flex pb={10}>
+          <Reveal index={2}>
+            <Projects />
+          </Reveal>
       </Flex>
     </Layout>
   );
