@@ -68,7 +68,7 @@ const Home: NextPage = () => {
       <Stack spacing={10} justifyContent="flex-start" alignItems="center" width="100%">
         <Flex height="60vh" alignItems="center" justifyContent="center">
           <Flex direction="column" background ="gray.100" p={12} rounded={6}>
-              <Heading mt={0} fontSize="8xl" lineHeight="95%" letterSpacing={{ sm: "-1.2px", md: "-1.8px" }} position="relative" zIndex={1} >
+              <Heading color="black" mt={0} fontSize="8xl" lineHeight="95%" letterSpacing={{ sm: "-1.2px", md: "-1.8px" }} position="relative" zIndex={1} >
               Hey 👋 I'm Pranav Balabhadra, <br /> <span ref={titleRef} />
               </Heading>
           </Flex>
