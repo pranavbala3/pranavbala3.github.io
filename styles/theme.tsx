@@ -1,10 +1,4 @@
 import { theme as chakraTheme, extendTheme } from "@chakra-ui/react";
-import { createBreakpoints } from "@chakra-ui/theme-tools";
-
-const config = {
-	initialColorMode: "dark",
-	useSystemColorMode: false,
-};
 
 const fluidType = (minFont: number, maxFont: number) => {
 	const XX = 768 / 100;
@@ -39,22 +33,6 @@ const colors = {
   },
 };
 
-const shadows = {
-	outline: "0 0 0 3px rgba(159, 122, 234, 0.6)",
-};
-
-const borders = {
-	borderColor: "yellow",
-};
-
-const fonts = {
-	...chakraTheme.fonts,
-	body: `Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
-	heading: `Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
-};
-
-
-
 const Link = {
 	baseStyle: {
 		color: colors.brand["500"],
@@ -62,34 +40,12 @@ const Link = {
 	},
 };
 
-const Input = {
-	baseStyle: {
-		field: {
-			color: "white",
-		},
-	},
-	defaultProps: {
-		focusBorderColor: "brand.300",
-	},
-};
-
 const overrides = {
 	...chakraTheme,
 	components: {
 		Link,
-		Input,
-		Textarea: Input,
 	},
-	config,
 	colors,
-	fonts,
-	shadows,
-	borders,
-	fontWeights: {
-		normal: 300,
-		medium: 600,
-		bold: 700,
-	},
 	fontSizes: {
 		  xs: fluidType(6, 12),
 		  sm: fluidType(7, 14),

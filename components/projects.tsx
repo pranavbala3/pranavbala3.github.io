@@ -26,7 +26,7 @@ import {
                         <Heading color="black" fontSize="3xl"> Furtographer </Heading>
                         <Text>Dec 2023 - Current</Text>
                     </HStack>
-                    <Text fontSize={{ base: "14x", md: "16px" }} whiteSpace="pre-line">
+                    <Text color="black" fontSize={{ base: "14x", md: "16px" }} whiteSpace="pre-line">
                     Furtographer is a Flask web app that enables users to log in/register, capture/upload photos of dogs, receive dog breed classification, 
                     and store their captures in a personalized, interactive collection. This project was developed as part of a group effort for CSDS 393: 
                     Software Engineering. It entailed coordinating various components, addressing both frontend and backend requirements. Our technology 
