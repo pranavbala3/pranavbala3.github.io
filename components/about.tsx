@@ -26,7 +26,7 @@ const About = () => (
           boxShadow="md"
           padding="30px"
         >
-          <Text fontSize={{ base: "14px", md: "18px" }} whiteSpace="pre-line">
+          <Text color="black" fontSize={{ base: "14px", md: "18px" }} whiteSpace="pre-line">
           Hello! I'm Pranav Balabhadra, and I'm a junior at Case Western Reserve University 
           pursuing degrees in Computer Science and Biomedical Engineering.  
           I'm particularly interested in the fields of Artificial Intelligence and Machine Learning. 
