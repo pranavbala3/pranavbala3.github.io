@@ -27,11 +27,11 @@ const About = () => (
           padding="30px"
         >
           <Text color="black" fontSize={{ base: "14px", md: "18px" }} whiteSpace="pre-line">
-          Hello! I'm Pranav Balabhadra, and I'm a junior at Case Western Reserve University 
-          pursuing degrees in Computer Science and Biomedical Engineering.  
-          I'm particularly interested in the fields of Artificial Intelligence and Machine Learning. 
-          I'm actively seeking opportunities in AI, ML, and Software Engineering, eager to contribute to cutting-edge developments. 
-          Beyond coding, I'm deeply committed to leveraging technology's transformative power in the biomedical industry. 
+            Hello! I'm Pranav Balabhadra, and I'm a junior at Case Western Reserve University 
+            pursuing degrees in Computer Science and Biomedical Engineering.  
+            I'm particularly interested in the fields of Artificial Intelligence and Machine Learning. 
+            I'm actively seeking opportunities in AI, ML, and Software Engineering, eager to contribute to cutting-edge developments. 
+            Beyond coding, I'm deeply committed to leveraging technology's transformative power in the biomedical industry. 
           </Text>
         </Box>
         <Divider orientation="horizontal" />
