@@ -7,87 +7,116 @@ import {
   IconButton,
   useDisclosure,
   Stack,
+  Text,
+  useColorMode,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import Link from "next/link";
+import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 const Links = [
-  {
-    name: "Home",
-    path: "/",
-  },
+  { name: "About", path: "#about" },
+  { name: "Experience", path: "#experience" },
+  { name: "Projects", path: "#projects" },
 ];
 
-const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
+const NavLink = ({ children, path, isDarkMode = true }: { children: ReactNode; path: string; isDarkMode?: boolean }) => (
   <Box
-    px={2}
-    py={1}
-    rounded={"md"}
+    as="a"
+    href={path}
+    px={3}
+    py={2}
+    rounded="full"
+    fontSize="sm"
+    fontWeight="600"
+    color={isDarkMode ? "gray.200" : "gray.700"}
+    transition="all 0.2s ease"
     _hover={{
       textDecoration: "none",
-      bg: "black",
-      color: "white",
+      bg: isDarkMode ? "whiteAlpha.200" : "gray.100",
+      color: isDarkMode ? "white" : "gray.900",
     }}
   >
-    <Link href={path}>{children}</Link>
+    {children}
   </Box>
 );
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isTransparent, setIsTransparent] = useState(true);
+  const { colorMode, toggleColorMode } = useColorMode();
+  const isDark = colorMode === "dark";
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 0;
-      setIsTransparent(!isScrolled);
+      setIsTransparent(window.scrollY <= 24);
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
       <Box
-        bg={isTransparent ? "transparent" : "white"}
-        color={isTransparent ? "white" : "black"}
-        px={4}
+        bg={isTransparent ? (isDark ? "rgba(5, 8, 22, 0.2)" : "rgba(255, 255, 255, 0.25)") : (isDark ? "rgba(5, 8, 22, 0.8)" : "rgba(255, 255, 255, 0.9)")}
+        backdropFilter="blur(24px)"
+        color={isDark ? "white" : "gray.800"}
+        px={{ base: 4, md: 8 }}
         position="fixed"
         width="100%"
         zIndex="99"
         top="0"
-        transition="background-color 0.3s"
+        transition="all 0.3s"
+        borderBottom={isTransparent ? "1px solid transparent" : (isDark ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(15, 23, 42, 0.08)")}
       >
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        <Flex h={16} alignItems="center" justifyContent="space-between">
+          <HStack spacing={{ base: 2, sm: 3 }} alignItems="center">
+            <Box as="a" href="https://github.com/pranavbala3" target="_blank" rel="noreferrer">
+              <Avatar size="sm" src="https://i.ibb.co/Gddn6VB/headshot.jpg" _hover={{ transform: "scale(1.05)" }} transition="transform 0.2s" />
+            </Box>
+            <Box>
+              <Text fontSize={{ base: "xs", sm: "sm" }} fontWeight="700">Pranav Balabhadra</Text>
+            </Box>
+          </HStack>
+
           <IconButton
-            size={"md"}
+            size="md"
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={"Open Menu"}
+            aria-label="Open Menu"
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
+            variant="ghost"
+            color={isDark ? "white" : "gray.700"}
           />
-          <HStack spacing={8} alignItems={"center"}>
-            <Avatar size={"md"} src={"https://i.ibb.co/Gddn6VB/headshot.jpg"} />
-          </HStack>
-          <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
+
+          <HStack as="nav" spacing={1} display={{ base: "none", md: "flex" }}>
             {Links.map(({ name, path }) => (
-              <NavLink key={path} path={path}>
+              <NavLink key={path} path={path} isDarkMode={isDark}>
                 {name}
               </NavLink>
             ))}
+            <IconButton
+              aria-label="Toggle theme"
+              size="sm"
+              variant="ghost"
+              onClick={toggleColorMode}
+              color={isDark ? "white" : "gray.700"}
+              icon={isDark ? <SunIcon /> : <MoonIcon />}
+            />
           </HStack>
         </Flex>
 
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
+            <Stack as="nav" spacing={2}>
               {Links.map(({ name, path }) => (
-                <NavLink key={path} path={path}>
+                <NavLink key={path} path={path} isDarkMode={isDark}>
                   {name}
                 </NavLink>
               ))}
+              <Box onClick={toggleColorMode}>
+                <NavLink path="#" isDarkMode={isDark}>{isDark ? "Light mode" : "Dark mode"}</NavLink>
+              </Box>
             </Stack>
           </Box>
         ) : null}

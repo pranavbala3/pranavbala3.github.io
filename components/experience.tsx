@@ -1,117 +1,111 @@
 import React from "react";
 import {
-    Link,
-    Text,
-    Heading,
-    Box,
-    VStack,
-    HStack,
-  } from "@chakra-ui/react";
+  Link,
+  Text,
+  Heading,
+  Box,
+  VStack,
+  HStack,
+  Badge,
+  List,
+  ListItem,
+  ListIcon,
+} from "@chakra-ui/react";
+import { CheckCircleIcon } from "@chakra-ui/icons";
 
-  
-  const Experience = () => (
-    <>
-        <VStack p={100} alignItems="left">
-        <Heading color="white" fontSize="6xl" pb={3}> Experience </Heading>
-            <HStack pb={10}>
-                <Box
-                bg="white"
-                p={4}
-                borderRadius="md"
-                boxShadow="md"
-                padding="30px"
-                width="100%"
-                >
-                    <HStack justifyContent="space-between" alignItems="flex-start">
-                        <Heading color="black" fontSize="3xl"> AI Python Developer @ Expedient </Heading>
-                        <Text>Dec 2023 - Current</Text>
-                    </HStack>
-                    <Text color="black" fontSize={{ base: "14x", md: "16px" }} whiteSpace="pre-line">
-                    I am currently serving as an AI Python Developer at Expedient on their AI Team. One of my achievements thus far includes implementing multi-modal 
-                    functionality for our chatbot, which utilizes Chainlit. This feature allows users to seamlessly attach documents, enabling them to ask targeted 
-                    questions related to the content they provide. The multi-modal functionality supports a variety of document formats, including PDFs, DOCX, XLSX, 
-                    and CSV. This enhancement has significantly elevated the chatbot's capabilities, providing users with a more interactive and tailored experience. 
-                    Stay tuned for more updates!
-                    </Text>
-                </Box>
-            </HStack>
-            <HStack pb={10}>
-                <Box
-                bg="white"
-                p={4}
-                borderRadius="md"
-                boxShadow="md"
-                padding="30px"
-                width="100%"
-                >
-                    <HStack justifyContent="space-between" alignItems="flex-start">
-                        <Heading color="black" fontSize="3xl"> Software Engineer Intern @ Informetric Systems </Heading>
-                        <Text>June 2023 - August 2023</Text>
-                    </HStack>
-                    <Text color="black" fontSize={{ base: "14x", md: "16px"  }} whiteSpace="pre-line">
-                        At Informetric Systems, I programmed in C++ for the first time. In my role, I developed a program using C++ that aimed to enhance data visualization 
-                        capabilities by generating 3D surface plots through OpenGL. The objective was to replace {' '}
-                        <Link colorScheme="brand" href="https://www.informetric.com/rqms/">
-                        <strong>RQMS</strong>
-                        </Link>
-                        's existing graphing software with a more efficient solution, 
-                        offering increased graphing capabilities and faster compilation speeds. Additionally, I configured and and delployed an Amazon 
-                        Elastic Compute Cloud instance coupled with Amazon Relational Database Service. This initiative was part of a proof-of-concept for {' '}
-                        <Link colorScheme="brand" href="https://www.informetric.com/agiledo/">
-                        <strong>AgileDoc</strong>
-                        </Link>
-                        {' '} in a cloud environment. The deployment of AgileDoc's components on AWS infrastructure involved creating an SQL database and thorough testing of product 
-                        functionality. This testing process included the validation of software components through the execution of SQL scripts and various test scenarios. 
-                        These efforts collectively aimed to assess and ensure the seamless integration and performance of AgileDoc in a cloud-based setup.
-                    </Text>
-                </Box>
-            </HStack>
-            <HStack pb={10}>
-                <Box
-                bg="white"
-                p={4}
-                borderRadius="md"
-                boxShadow="md"
-                padding="30px"
-                width="100%"
-                >
-                    <HStack justifyContent="space-between" alignItems="flex-start">
-                        <Heading color="black" fontSize="3xl"> Engineering Intern @ AAYUNA </Heading>
-                        <Text>June 2022 - August 2023</Text>
-                    </HStack>
-                    <Text color="black" fontSize={{ base: "14px", md: "16px" }} whiteSpace="pre-line">
-                    In my role, I leveraged Python to apply image processing techniques to analyze images of integrated circuits. This effort resulted in an 80% 
-                    accuracy rate in text recognition and precise measurements of features within 1% of expected dimensions. The implementation involved utilizing a range 
-                    of Python libraries, including OpenCV, NumPy, Pandas, Scikit-Learn, Matplotlib, Pytesseract, and Imutils, to optimize the efficiency and accuracy of 
-                    the image processing pipeline. Beyond my focus on software development, I contributed to product development by designing models and constructing 
-                    a UV curing assembly using SolidWorks. In addition to my contributions in image processing and engineering design, I wrote Python code to control the 
-                    XYZ position of a camera setup designed for viewing small objects.
-                    </Text>
-                </Box>
-            </HStack>
-            <HStack pb={10}>
-                <Box
-                bg="white"
-                p={4}
-                borderRadius="md"
-                boxShadow="md"
-                padding="30px"
-                width="100%"
-                >
-                    <HStack justifyContent="space-between" alignItems="flex-start">
-                        <Heading color="black" fontSize="3xl"> Machine Learning Researcher @ Shoffstall Lab </Heading>
-                        <Text>Jan 2022 - Present</Text>
-                    </HStack>
-                    <Text color="black" fontSize={{ base: "14px", md: "16px" }} whiteSpace="pre-line">
-                    I spearheaded the development of a robust machine learning model aimed at tracking fascicle movement within the vagus nerve from CT images. Leveraging Python, 
-                    I integrated Meta's Segment Anything Model with PyTorch into our image processing pipeline, resulting in a  92% testing accuracy. Additionally, I 
-                    applied manual segmentation techniques to curate a high-quality training dataset from a vast collection of micro-CT scans. This approach ensured the 
-                    model's efficacy and precision. Our integration of Meta's model significantly enhanced segmentation accuracy, complementing the machine learning algorithm's performance.
-                    </Text>
-                </Box>
-            </HStack>
-        </VStack>
-    </>
-  );
+const experiences = [
+  {
+    title: "Software Engineer",
+    company: "Amazon",
+    period: "Jun 2025 - Present",
+    description:
+      "Built and maintained Forge, an AI-powered developer tooling platform used across Prime Video engineering teams, leveraging MCP for code search, documentation retrieval, and codebase understanding. Reduced Neptune analytics costs by 93% and cut graph construction time by 90% through a shared-graph architecture and incremental indexing system.",
+  },
+  {
+    title: "Software Engineering Intern",
+    company: "Iron Mountain",
+    period: "Jun 2024 - Aug 2024",
+    description:
+      "Implemented a Kubernetes-based CI/CD deployment pipeline for an observability stack using ArgoCD, Kustomize, Grafana, Prometheus, and Loki, reducing deployment time by 80% and setup effort by 70%.",
+  },
+  {
+    title: "AI Python Developer",
+    company: "Expedient",
+    period: "Dec 2023 - May 2025",
+    description:
+      "Developed and maintained Expedient’s AI CTRL services using React, TypeScript, and Python, added multi-format document support with LangChain, and implemented a feedback loop for model improvement using Elasticsearch.",
+  },
+  {
+    title: "Software Engineering Intern",
+    company: "Informetric Systems",
+    period: "Jun 2023 - Aug 2023",
+    description:
+      "Built a high-performance C++ and OpenGL visualization tool to improve RQMS graphing capability and deployed AWS infrastructure for AgileDoc proof-of-concept testing.",
+    link: "https://www.informetric.com/agiledo/",
+    linkText: "AgileDoc",
+  },
+  {
+    title: "Machine Learning Researcher",
+    company: "Shoffstall Lab",
+    period: "Jan 2022 - May 2024",
+    description:
+      "Developed a segmentation pipeline for CT imaging using PyTorch and Meta’s Segment Anything Model, achieving 92% testing accuracy in fascicle movement tracking for the vagus nerve.",
+  },
+];
 
-  export default Experience;
+const Experience = ({ isDarkMode = true }: { isDarkMode?: boolean }) => (
+  <Box id="experience" px={{ base: 6, md: 12, lg: 20 }} py={{ base: 16, md: 24 }} maxW="1400px" mx="auto">
+    <VStack alignItems="flex-start" spacing={8}>
+      <Box>
+        <Badge colorScheme="cyan" variant="subtle" px={3} py={1} rounded="full">Experience</Badge>
+        <Heading color={isDarkMode ? "white" : "gray.800"} fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} mt={4}>
+          A track record of building, learning, and shipping.
+        </Heading>
+      </Box>
+
+      <VStack spacing={5} alignItems="stretch" w="100%">
+        {experiences.map((job) => (
+          <Box
+            key={job.title}
+            bg={isDarkMode ? "rgba(15, 23, 42, 0.75)" : "rgba(255, 255, 255, 0.94)"}
+            border="1px solid"
+            borderColor={isDarkMode ? "whiteAlpha.200" : "gray.200"}
+            p={{ base: 6, md: 8 }}
+            rounded="2xl"
+            boxShadow="0 18px 50px rgba(0,0,0,0.22)"
+          >
+            <HStack justifyContent="space-between" alignItems="flex-start" spacing={4} flexWrap="wrap">
+              <Box>
+                <Heading color={isDarkMode ? "white" : "gray.800"} fontSize={{ base: "xl", md: "2xl" }}>
+                  {job.title} @ {job.company}
+                </Heading>
+              </Box>
+              <Badge colorScheme="purple" variant="subtle" px={3} py={1} rounded="full">
+                {job.period}
+              </Badge>
+            </HStack>
+
+            <List spacing={3} mt={4} color={isDarkMode ? "gray.300" : "gray.700"}>
+              <ListItem>
+                <ListIcon as={CheckCircleIcon} color="cyan.300" />
+                <Box as="span" display="inline" overflowWrap="anywhere">
+                  {job.description}
+                </Box>
+                {job.link ? (
+                  <>
+                    {" "}
+                    <Link href={job.link} isExternal color="cyan.300">
+                      {job.linkText}
+                    </Link>
+                  </>
+                ) : null}
+              </ListItem>
+            </List>
+          </Box>
+        ))}
+      </VStack>
+    </VStack>
+  </Box>
+);
+
+export default Experience;
