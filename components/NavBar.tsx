@@ -25,7 +25,7 @@ const NavLink = ({ children, path, isDarkMode = true }: { children: ReactNode; p
     px={3}
     py={2}
     rounded="full"
-    fontSize="sm"
+    fontSize={{ base: "lg", md: "sm" }}
     fontWeight="600"
     color={isDarkMode ? "gray.200" : "gray.700"}
     transition="all 0.2s ease"
@@ -75,19 +75,36 @@ export default function Navbar() {
               <Avatar size="sm" src="https://i.ibb.co/Gddn6VB/headshot.jpg" _hover={{ transform: "scale(1.05)" }} transition="transform 0.2s" />
             </Box>
             <Box>
-              <Text fontSize={{ base: "xs", sm: "sm" }} fontWeight="700">Pranav Balabhadra</Text>
+              <Text fontSize={{ base: "md", sm: "lg" }} fontWeight="700">Pranav Balabhadra</Text>
             </Box>
           </HStack>
 
-          <IconButton
-            size="md"
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label="Open Menu"
-            display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
-            variant="ghost"
-            color={isDark ? "white" : "gray.700"}
-          />
+          <HStack spacing={1} display={{ base: "flex", md: "none" }}>
+            <IconButton
+              aria-label="Toggle theme"
+              size="md"
+              variant="ghost"
+              onClick={toggleColorMode}
+              color={isDark ? "white" : "gray.700"}
+              icon={isDark ? <SunIcon /> : <MoonIcon />}
+              h={{ base: "48px", md: "40px" }}
+              w={{ base: "48px", md: "40px" }}
+              fontSize={{ base: "18px", md: "16px" }}
+              _hover={{ bg: isDark ? "whiteAlpha.200" : "gray.100" }}
+            />
+            <IconButton
+              size="md"
+              icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              onClick={isOpen ? onClose : onOpen}
+              variant="ghost"
+              color={isDark ? "white" : "gray.700"}
+              h={{ base: "48px", md: "40px" }}
+              w={{ base: "48px", md: "40px" }}
+              fontSize={{ base: "18px", md: "16px" }}
+              _hover={{ bg: isDark ? "whiteAlpha.200" : "gray.100" }}
+            />
+          </HStack>
 
           <HStack as="nav" spacing={1} display={{ base: "none", md: "flex" }}>
             {Links.map(({ name, path }) => (
@@ -108,15 +125,12 @@ export default function Navbar() {
 
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
-            <Stack as="nav" spacing={2}>
+            <Stack as="nav" spacing={2} alignItems="flex-start">
               {Links.map(({ name, path }) => (
                 <NavLink key={path} path={path} isDarkMode={isDark}>
                   {name}
                 </NavLink>
               ))}
-              <Box onClick={toggleColorMode}>
-                <NavLink path="#" isDarkMode={isDark}>{isDark ? "Light mode" : "Dark mode"}</NavLink>
-              </Box>
             </Stack>
           </Box>
         ) : null}

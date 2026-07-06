@@ -35,7 +35,7 @@ const About = ({ isDarkMode = true }: { isDarkMode?: boolean }) => (
             rounded="2xl"
             boxShadow="0 20px 60px rgba(0,0,0,0.28)"
           >
-            <Text color={isDarkMode ? "gray.300" : "gray.700"} fontSize={{ base: "md", md: "lg" }} lineHeight="1.8" overflowWrap="anywhere">
+            <Text color={isDarkMode ? "gray.300" : "gray.700"} fontSize={{ base: "2xl", md: "lg" }} lineHeight="1.8" overflowWrap="anywhere">
               I’m Pranav Balabhadra, a software engineer at Amazon building AI-powered developer tooling and scalable intelligence systems.
               My work sits at the intersection of applied machine learning, cloud infrastructure, and practical product engineering, with a strong focus on AI research and responsible AI.
             </Text>

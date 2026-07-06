@@ -85,7 +85,7 @@ const Experience = ({ isDarkMode = true }: { isDarkMode?: boolean }) => (
               </Badge>
             </HStack>
 
-            <List spacing={3} mt={4} color={isDarkMode ? "gray.300" : "gray.700"}>
+            <List spacing={3} mt={4} color={isDarkMode ? "gray.300" : "gray.700"} fontSize={{ base: "xl", md: "md" }}>
               <ListItem>
                 <ListIcon as={CheckCircleIcon} color="cyan.300" />
                 <Box as="span" display="inline" overflowWrap="anywhere">

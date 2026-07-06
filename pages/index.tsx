@@ -63,14 +63,18 @@ const Home: NextPage = () => {
                   <br />
                   I’m <Box as="span" color="cyan.300" ref={titleRef} />
                 </Heading>
-                <Text color={isDark ? "gray.300" : "gray.600"} fontSize={{ base: "md", md: "lg" }} maxW="780px" lineHeight="1.8">
+                <Text color={isDark ? "gray.300" : "gray.600"} fontSize={{ base: "2xl", md: "lg" }} maxW="780px" lineHeight="1.8">
                   I build AI-powered developer tools and machine learning systems at Amazon, with experience spanning applied ML, developer platforms, and large-scale software engineering.
                 </Text>
                 <Stack direction={{ base: "column", sm: "row" }} spacing={4} flexWrap="wrap">
                   <Button
-                    leftIcon={<Icon as={FaRocket} />}
+                    leftIcon={<Icon as={FaRocket} fontSize={{ base: "18px", md: "16px" }} />}
                     colorScheme="purple"
                     onClick={() => scrollToSection(aboutRef)}
+                    size={{ base: "md", md: "sm" }}
+                    px={{ base: 6, md: 4 }}
+                    py={{ base: 4, md: 3 }}
+                    fontSize={{ base: "md", md: "sm" }}
                   >
                     Explore my work
                   </Button>
@@ -79,10 +83,14 @@ const Home: NextPage = () => {
                     href="https://www.linkedin.com/in/pranav-balabhadra/"
                     target="_blank"
                     rel="noreferrer"
-                    leftIcon={<Icon as={FaLinkedin} />}
+                    leftIcon={<Icon as={FaLinkedin} fontSize={{ base: "18px", md: "16px" }} />}
                     variant="outline"
                     color={isDark ? "white" : "gray.700"}
                     borderColor={isDark ? "whiteAlpha.300" : "gray.300"}
+                    size={{ base: "md", md: "sm" }}
+                    px={{ base: 6, md: 4 }}
+                    py={{ base: 4, md: 3 }}
+                    fontSize={{ base: "md", md: "sm" }}
                   >
                     LinkedIn
                   </Button>
@@ -91,19 +99,27 @@ const Home: NextPage = () => {
                     href="/resume.pdf"
                     target="_blank"
                     rel="noreferrer"
-                    leftIcon={<Icon as={FaGraduationCap} />}
+                    leftIcon={<Icon as={FaGraduationCap} fontSize={{ base: "18px", md: "16px" }} />}
                     variant="outline"
                     color={isDark ? "white" : "gray.700"}
                     borderColor={isDark ? "whiteAlpha.300" : "gray.300"}
+                    size={{ base: "md", md: "sm" }}
+                    px={{ base: 6, md: 4 }}
+                    py={{ base: 4, md: 3 }}
+                    fontSize={{ base: "md", md: "sm" }}
                   >
                     View resume
                   </Button>
                   <Button
-                    leftIcon={<Icon as={FaGraduationCap} />}
+                    leftIcon={<Icon as={FaGraduationCap} fontSize={{ base: "18px", md: "16px" }} />}
                     variant="outline"
                     color={isDark ? "white" : "gray.700"}
                     borderColor={isDark ? "whiteAlpha.300" : "gray.300"}
                     onClick={() => scrollToSection(experienceRef)}
+                    size={{ base: "md", md: "sm" }}
+                    px={{ base: 6, md: 4 }}
+                    py={{ base: 4, md: 3 }}
+                    fontSize={{ base: "md", md: "sm" }}
                   >
                     View my journey
                   </Button>
@@ -111,19 +127,25 @@ const Home: NextPage = () => {
 
                 <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4} mt={4}>
                   <Box bg={isDark ? "whiteAlpha.100" : "gray.50"} p={4} rounded="xl" border="1px solid" borderColor={isDark ? "whiteAlpha.200" : "gray.200"}>
-                    <Icon as={FaBrain} color="cyan.300" mb={2} />
-                    <Text fontWeight="700" color={isDark ? "white" : "gray.800"}>AI & ML</Text>
-                    <Text color={isDark ? "gray.400" : "gray.600"} fontSize="sm">Applied models, intelligent interfaces, and practical deployment.</Text>
+                    <Flex alignItems="center" gap={2} mb={2}>
+                      <Icon as={FaBrain} color="cyan.300" />
+                      <Text fontWeight="700" color={isDark ? "white" : "gray.800"}>AI & ML</Text>
+                    </Flex>
+                    <Text color={isDark ? "gray.400" : "gray.600"} fontSize={{ base: "md", sm: "sm" }}>Applied models, intelligent interfaces, and practical deployment.</Text>
                   </Box>
                   <Box bg={isDark ? "whiteAlpha.100" : "gray.50"} p={4} rounded="xl" border="1px solid" borderColor={isDark ? "whiteAlpha.200" : "gray.200"}>
-                    <Icon as={FaCode} color="purple.300" mb={2} />
-                    <Text fontWeight="700" color={isDark ? "white" : "gray.800"}>Software</Text>
-                    <Text color={isDark ? "gray.400" : "gray.600"} fontSize="sm">Thoughtful UIs and reliable systems built with modern tools.</Text>
+                    <Flex alignItems="center" gap={2} mb={2}>
+                      <Icon as={FaCode} color="purple.300" />
+                      <Text fontWeight="700" color={isDark ? "white" : "gray.800"}>Software</Text>
+                    </Flex>
+                    <Text color={isDark ? "gray.400" : "gray.600"} fontSize={{ base: "md", sm: "sm" }}>Thoughtful UIs and reliable systems built with modern tools.</Text>
                   </Box>
                   <Box bg={isDark ? "whiteAlpha.100" : "gray.50"} p={4} rounded="xl" border="1px solid" borderColor={isDark ? "whiteAlpha.200" : "gray.200"}>
-                    <Icon as={FaRocket} color="green.300" mb={2} />
-                    <Text fontWeight="700" color={isDark ? "white" : "gray.800"}>Systems</Text>
-                    <Text color={isDark ? "gray.400" : "gray.600"} fontSize="sm">Building reliable, scalable AI and ML experiences that ship to real users.</Text>
+                    <Flex alignItems="center" gap={2} mb={2}>
+                      <Icon as={FaRocket} color="green.300" />
+                      <Text fontWeight="700" color={isDark ? "white" : "gray.800"}>Systems</Text>
+                    </Flex>
+                    <Text color={isDark ? "gray.400" : "gray.600"} fontSize={{ base: "md", sm: "sm" }}>Building reliable, scalable AI and ML experiences that ship to real users.</Text>
                   </Box>
                 </SimpleGrid>
               </Stack>

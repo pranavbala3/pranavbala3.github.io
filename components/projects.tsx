@@ -79,7 +79,7 @@ const Projects = ({ isDarkMode = true }: { isDarkMode?: boolean }) => (
               </Badge>
             </HStack>
 
-            <Text color={isDarkMode ? "gray.300" : "gray.700"} mt={4} lineHeight="1.8" overflowWrap="anywhere">
+            <Text color={isDarkMode ? "gray.300" : "gray.700"} mt={4} lineHeight="1.8" overflowWrap="anywhere" fontSize={{ base: "2xl", md: "md" }}>
               {project.description}
             </Text>
 
@@ -93,7 +93,7 @@ const Projects = ({ isDarkMode = true }: { isDarkMode?: boolean }) => (
               ))}
             </Wrap>
 
-            <Stack direction={{ base: "column", sm: "row" }} spacing={3} mt={4} alignItems="center">
+            <Stack direction={{ base: "column", sm: "row" }} spacing={{ base: 2, sm: 3 }} mt={4} alignItems={{ base: "flex-start", sm: "center" }}>
               {project.repoLink ? (
                 <Link href={project.repoLink} isExternal color="cyan.400" display="inline-flex" _hover={{ color: "cyan.300" }}>
                   <Icon as={FaGithub} boxSize={6} />
