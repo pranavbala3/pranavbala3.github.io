@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Button, Icon, Stack, Heading, Flex, Box, Text, Badge, SimpleGrid, useColorMode } from "@chakra-ui/react";
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { motion } from "framer-motion";
 import Reveal from "../styles/Reveal";
 import Layout from "../components/Layout";
@@ -10,7 +10,69 @@ import Experience from "../components/experience";
 import Projects from "../components/projects";
 import { FaGraduationCap, FaRocket, FaBrain, FaCode, FaLinkedin } from "react-icons/fa";
 
-const Home: NextPage = () => {
+type ReadingItem = {
+  date: string;
+  title: string;
+  link: string;
+};
+
+interface HomeProps {
+  latestReading: ReadingItem | null;
+}
+
+const parseLatestReading = (markdown: string): ReadingItem | null => {
+  const rows = markdown
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith("|") && !line.startsWith("| 📅"));
+
+  const dataRows = rows.slice(2);
+
+  for (let index = dataRows.length - 1; index >= 0; index -= 1) {
+    const row = dataRows[index];
+    if (!row.includes("http")) continue;
+
+    const cells = row.split("|").slice(1, -1).map((cell) => cell.trim());
+    if (cells.length < 2) continue;
+
+    const [date, titleCell, linkCell] = cells;
+    const title = titleCell.replace(/\*/g, "").trim();
+    const linkMatch = linkCell.match(/\((https?:\/\/[^)]+)\)/);
+
+    if (title && linkMatch?.[1]) {
+      return { date, title, link: linkMatch[1] };
+    }
+  }
+
+  return null;
+};
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  try {
+    const response = await fetch("https://raw.githubusercontent.com/pranavbala3/daily-readings/main/README.md");
+    if (!response.ok) {
+      throw new Error("Failed to fetch readings repo");
+    }
+
+    const markdown = await response.text();
+    const latestReading = parseLatestReading(markdown);
+
+    return {
+      props: {
+        latestReading,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        latestReading: null,
+      },
+      revalidate: 3600,
+    };
+  }
+};
+
+const Home: NextPage<HomeProps> = ({ latestReading }) => {
   const titleRef = useRef<HTMLSpanElement | null>(null);
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const experienceRef = useRef<HTMLDivElement | null>(null);
@@ -66,6 +128,43 @@ const Home: NextPage = () => {
                 <Text color={isDark ? "gray.300" : "gray.600"} fontSize={{ base: "2xl", md: "lg" }} maxW="780px" lineHeight="1.8">
                   I build AI-powered developer tools and machine learning systems at Amazon, with experience spanning applied ML, developer platforms, and large-scale software engineering.
                 </Text>
+                <Box
+                  maxW="780px"
+                  p={{ base: 4, md: 5 }}
+                  rounded="2xl"
+                  border="1px solid"
+                  borderColor={isDark ? "whiteAlpha.200" : "gray.200"}
+                  bg={isDark ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.7)"}
+                >
+                  <Flex alignItems="center" gap={2} mb={2}>
+                    <Icon as={FaBrain} color="cyan.300" />
+                    <Text fontSize="sm" fontWeight="700" letterSpacing="0.12em" textTransform="uppercase" color={isDark ? "gray.300" : "gray.500"}>
+                      What I’m Reading
+                    </Text>
+                  </Flex>
+                  <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="700" color={isDark ? "white" : "gray.800"} mb={2}>
+                    {latestReading?.title ?? "Recent AI/ML papers I’ve been exploring"}
+                  </Text>
+                  <Text color={isDark ? "gray.400" : "gray.600"} fontSize={{ base: "md", md: "lg" }} lineHeight="1.7">
+                    {latestReading ? "I’m keeping up with the latest work in AI and ML through papers like this one." : "I keep a running list of research papers that shape how I think about AI and ML."}
+                  </Text>
+                  {latestReading?.link ? (
+                    <Button
+                      as="a"
+                      href={latestReading.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      variant="ghost"
+                      colorScheme="cyan"
+                      mt={4}
+                      px={0}
+                      justifyContent="flex-start"
+                    >
+                      Read the paper
+                    </Button>
+                  ) : null}
+                </Box>
+
                 <Stack direction={{ base: "column", sm: "row" }} spacing={4} flexWrap="wrap">
                   <Button
                     leftIcon={<Icon as={FaRocket} fontSize={{ base: "18px", md: "16px" }} />}
